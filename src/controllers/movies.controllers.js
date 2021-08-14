@@ -7,6 +7,7 @@ moviesCtrl.newMovie = async (req, res) => {
     const addNewMovie = new Movie({
       name: req.body.name,
       resume: req.body.resume,
+      raiting: req.body.raiting,
       date: req.body.date,
       genre: req.body.genre,
       image: req.body.image,
@@ -24,6 +25,17 @@ moviesCtrl.listMovies = async (req, res) => {
     res.status(200).json(arrayMovies);
   } catch (error) {
     res.status(500).json({ msj: "Error when trying to list the movies" });
+  }
+};
+
+moviesCtrl.deleteMovie = async (req, res) => {
+  try {
+    console.log(req.params.id);
+    await Movie.findByIdAndDelete(req.params.id);
+    res.status(200).json({ msj: "The movie was deleted successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ msj: "Error when trying to delete the movie" });
   }
 };
 
