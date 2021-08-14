@@ -1,0 +1,32 @@
+import mongoose, { Schema } from "mongoose";
+
+const moviesSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+    maxLength: 150,
+    unique: true,
+  },
+  resume: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  date: {
+    type: Date,
+    required: true,
+  },
+  genre: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+});
+
+const Movie = mongoose.model("Movie", moviesSchema);
+
+export default Movie;
