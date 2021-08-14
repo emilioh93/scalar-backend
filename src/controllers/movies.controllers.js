@@ -39,4 +39,24 @@ moviesCtrl.deleteMovie = async (req, res) => {
   }
 };
 
+moviesCtrl.editMovie = async (req, res) => {
+  try {
+    await Movie.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).json({ msj: "The movie was successfully updated" });
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({ msj: "Error when trying to find the movie" });
+  }
+};
+
+moviesCtrl.getTheMovie = async (req, res) => {
+  try {
+    const wantedMovie = await Movie.findById(req.params.id);
+    res.status(200).json(wantedMovie);
+  } catch (error) {
+    console.log("Error!:", error);
+    res.status(404).json({ msj: "Error when trying to find the movie" });
+  }
+};
+
 export default moviesCtrl;
