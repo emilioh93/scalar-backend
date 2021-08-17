@@ -9,6 +9,7 @@ usersCtrl.newUser = async (req, res) => {
       lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
+      role: req.body.role,
     });
     await addNewUser.save();
     res.status(201).json({ msj: "User added successfully!" });
