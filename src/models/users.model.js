@@ -25,6 +25,12 @@ const usersSchema = new Schema({
     maxLength: 150,
     unique: false,
   },
+  role: {
+    type: String,
+    required: true,
+    maxLength: 150,
+    unique: false,
+  },
 });
 
 const User = mongoose.model("User", usersSchema);
