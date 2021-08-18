@@ -1,20 +1,38 @@
 import User from "../models/users.model";
+import generateToken from "../utils/generateToken";
 
 const usersCtrl = {};
 
 usersCtrl.newUser = async (req, res) => {
-  try {
-    const addNewUser = new User({
-      name: req.body.name,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password,
-      role: req.body.role,
+  const { name, lastName, email, password, role } = req.body;
+
+  const userExists = await User.findOne({ email });
+
+  if (userExists) {
+    res.status(400).json({ msj: "User already exists" });
+  }
+
+  const user = await User.create({
+    name,
+    lastName,
+    email,
+    password,
+    role,
+  });
+
+  if (user) {
+    res.status(201).json({
+      _id: user._id,
+      name: user.name,
+      lastName: user.lastName,
+      email: user.email,
+      password: user.password,
+      role: user.role,
+      token: generateToken(user._id),
     });
-    await addNewUser.save();
-    res.status(201).json({ msj: "User added successfully!" });
-  } catch (error) {
-    res.status(500).json({ msj: "Error when adding user" });
+  } else {
+    res.status(400);
+    throw new Error("User not found");
   }
 };
 
@@ -55,6 +73,25 @@ usersCtrl.getTheUser = async (req, res) => {
   } catch (error) {
     console.log("Error!:", error);
     res.status(404).json({ msj: "Error when trying to find the user" });
+  }
+};
+
+usersCtrl.authUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (user && (await user.matchPassword(password))) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      lastName: user.lastName,
+      email: user.email,
+      role: user.role,
+      token: generateToken(user._id),
+    });
+  } else {
+    res.status(401).json({ msj: "Invalid email or password" });
   }
 };
 
