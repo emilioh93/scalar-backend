@@ -25,7 +25,7 @@ usersCtrl.newUser = async (req, res) => {
   if (user) {
     res.status(201).json({
       _id: user._id,
-      name: user.name,
+      firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
       password: user.password,
@@ -86,7 +86,7 @@ usersCtrl.authUser = async (req, res) => {
   if (user && (await user.matchPassword(password))) {
     res.json({
       _id: user._id,
-      name: user.name,
+      firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
       role: user.role,
