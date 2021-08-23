@@ -4,7 +4,8 @@ import generateToken from "../utils/generateToken";
 const usersCtrl = {};
 
 usersCtrl.newUser = async (req, res) => {
-  const { name, lastName, email, password, role } = req.body;
+  const { firstName, lastName, email, password, confirmPassword, role } =
+    req.body;
 
   const userExists = await User.findOne({ email });
 
@@ -13,10 +14,11 @@ usersCtrl.newUser = async (req, res) => {
   }
 
   const user = await User.create({
-    name,
+    firstName,
     lastName,
     email,
     password,
+    confirmPassword,
     role,
   });
 

@@ -2,7 +2,7 @@ import mongoose, { Schema } from "mongoose";
 import bcrypt from "bcryptjs";
 
 const usersSchema = new Schema({
-  name: {
+  firstName: {
     type: String,
     required: true,
     maxLength: 150,
@@ -21,6 +21,12 @@ const usersSchema = new Schema({
     unique: true,
   },
   password: {
+    type: String,
+    required: true,
+    maxLength: 150,
+    unique: false,
+  },
+  confirmPassword: {
     type: String,
     required: true,
     maxLength: 150,
