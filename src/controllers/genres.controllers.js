@@ -26,7 +26,7 @@ genresCtrl.listGenres = async (req, res) => {
 genresCtrl.deleteGenre = async (req, res) => {
   try {
     console.log(req.params.id);
-    await User.findByIdAndDelete(req.params.id);
+    await Genre.findByIdAndDelete(req.params.id);
     res.status(200).json({ msj: "The genre was deleted successfully" });
   } catch (error) {
     console.log(error);
