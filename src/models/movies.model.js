@@ -17,7 +17,7 @@ const moviesSchema = new Schema({
     required: true,
   },
   date: {
-    type: Date,
+    type: String,
     required: true,
   },
   genre: {

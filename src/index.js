@@ -6,6 +6,7 @@ import "./database";
 import moviesRoutes from "./routes/movies.routes";
 import userRoutes from "./routes/users.routes";
 import genresRoutes from "./routes/genres.routes";
+import commentsRoutes from "./routes/comments.routes";
 
 /* -------------------------------- Instance -------------------------------- */
 const app = express();
@@ -28,3 +29,4 @@ app.use(express.static(path.join(__dirname, "../public")));
 app.use("/api/movies", moviesRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/genres", genresRoutes);
+app.use("/api/comments", commentsRoutes);

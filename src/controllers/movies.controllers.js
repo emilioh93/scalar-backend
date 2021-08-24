@@ -15,6 +15,7 @@ moviesCtrl.newMovie = async (req, res) => {
     await addNewMovie.save();
     res.status(201).json({ msj: "Movie added successfully!" });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ msj: "Error when adding movie" });
   }
 };
