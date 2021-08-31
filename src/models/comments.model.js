@@ -3,6 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const commentsSchema = new Schema({
   user: {
     type: mongoose.Types.ObjectId,
+    unique: true,
   },
   userName: {
     type: String,
@@ -12,6 +13,9 @@ const commentsSchema = new Schema({
   },
   text: {
     type: String,
+    required: true,
+    maxLength: 100,
+    unique: true,
   },
   movie: {
     type: mongoose.Types.ObjectId,
