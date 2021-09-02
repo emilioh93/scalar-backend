@@ -1,11 +1,11 @@
-import mongoose, { Rating } from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const ratingSchema = new Schema({
   user: {
     type: mongoose.Types.ObjectId,
   },
   value: {
-    type: Numbre,
+    type: Number,
   },
   movie: {
     type: mongoose.Types.ObjectId,
