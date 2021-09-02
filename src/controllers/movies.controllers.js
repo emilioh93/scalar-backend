@@ -7,7 +7,6 @@ moviesCtrl.newMovie = async (req, res) => {
     const addNewMovie = new Movie({
       name: req.body.name,
       resume: req.body.resume,
-      raiting: req.body.raiting,
       date: req.body.date,
       genre: req.body.genre,
       image: req.body.image,

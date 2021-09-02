@@ -12,10 +12,6 @@ const moviesSchema = new Schema({
     required: true,
     unique: true,
   },
-  raiting: {
-    type: Number,
-    required: true,
-  },
   date: {
     type: String,
     required: true,
