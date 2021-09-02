@@ -30,3 +30,4 @@ app.use("/api/movies", moviesRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/genres", genresRoutes);
 app.use("/api/comments", commentsRoutes);
+app.use("/api/ratings", commentsRoutes);
